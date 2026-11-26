@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>MemeBot AI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <aside class="sidebar"><button class="brand" aria-label="MemeBot AI"><span class="brand-mark">M</span><span>MemeBot AI</span></button>
+    <nav id="nav"><button class="nav-item active" data-view="dashboard">▦<span>Dashboard</span></button><button class="nav-item" data-view="scanner">⌁<span>Scanner</span></button><button class="nav-item" data-view="assistant">✦<span>AI Assistant</span></button><button class="nav-item" data-view="simulator">↗<span>Paper Trade</span></button></nav>
+    <button class="sidebar-bottom" id="themeToggle">◐<span>Theme</span></button>
+  </aside>
+  <main>
+    <header><div><p class="eyebrow">LIVE MARKET</p><h1 id="pageTitle">Dashboard</h1></div><div class="header-actions"><span class="network"><i></i> Mainnet</span><button class="connect-btn" id="connectWallet">Connect Phantom</button></div></header>
+    <section id="dashboardView" class="view active">
+      <div class="balance-grid">
+        <article class="card wallet-card"><div class="card-head"><span>Wallet balance</span><span id="walletStatus" class="status">Disconnected</span></div><h2 id="solBalance">— SOL</h2><p id="walletAddress">Connect Phantom to view your wallet</p><div class="wallet-stats"><div><span>SPL assets</span><strong id="splCount">—</strong></div><div><span>Total value</span><strong id="totalValue">—</strong></div></div></article>
+        <article class="card"><div class="card-head"><span>Simulated P&L</span><span class="status live">Virtual</span></div><h2 id="simPnl">0.00 USDC</h2><p>Paper trading only · no real funds</p><canvas id="pnlChart" height="110"></canvas></article>
+        <article class="card"><div class="card-head"><span>Market pulse</span><span class="status live">Live</span></div><div class="pulse"><strong id="marketStatus">Loading</strong><p id="marketSummary">Fetching market data…</p></div></article>
+      </div>
+      <article class="card chart-card"><div class="card-head"><div><span>Market chart</span><strong id="chartSymbol">SOL / USDC</strong></div><div class="range"><button class="active" data-range="1H">1H</button><button data-range="24H">24H</button><button data-range="7D">7D</button></div></div><canvas id="marketChart" height="280"></canvas></article>
+      <article class="card"><div class="card-head"><span>Token watchlist</span><button class="text-btn" id="refreshMarket">Refresh</button></div><div class="table-wrap"><table><thead><tr><th>Token</th><th>Price</th><th>5m</th><th>1h</th><th>24h</th><th>Liquidity</th><th>Volume</th><th>Signal</th></tr></thead><tbody id="watchlist"></tbody></table></div></article>
+    </section>
+    <section id="scannerView" class="view"><article class="card"><div class="card-head"><div><span>Live memecoin scanner</span><small id="scanMeta">Fetching via DexScreener</small></div><button class="text-btn" id="rescan">Rescan</button></div><div id="scannerGrid" class="scanner-grid"><div class="loading">Loading live tokens…</div></div></article></section>
+    <section id="assistantView" class="view"><article class="card assistant-card"><div class="assistant-head"><div class="bot-avatar">✦</div><div><span>MemeBot AI</span><small>Market analysis · educational only</small></div></div><div id="chatMessages" class="chat-messages"><div class="bot-message">Ask about market conditions, chart patterns, or risk management. I cannot guarantee profits.</div></div><form id="chatForm" class="chat-form"><input id="chatInput" placeholder="Ask MemeBot AI…" autocomplete="off"><button>Send</button></form></article></section>
+    <section id="simulatorView" class="view"><div class="balance-grid"><article class="card"><span>Virtual cash</span><h2 id="paperCash">10,000 USDC</h2><p>Paper balance · cannot be withdrawn</p></article><article class="card"><span>Virtual P&L</span><h2 id="paperPnl">0.00 USDC</h2><p>Realized profit and loss</p></article></div><article class="card"><div class="card-head"><span>Paper trade</span><span class="status live">Simulation</span></div><form id="paperForm" class="trade-form"><label>Token<select id="tradeToken"></select></label><label>Side<select id="tradeSide"><option value="buy">Buy</option><option value="sell">Sell</option></select></label><label>USDC amount<input id="tradeAmount" type="number" min="1" value="100"></label><button type="submit">Execute virtual trade</button></form></article><article class="card"><div class="card-head"><span>Transaction history</span></div><div class="table-wrap"><table><thead><tr><th>Time</th><th>Side</th><th>Token</th><th>Amount</th><th>Status</th></tr></thead><tbody id="tradeHistory"><tr><td colspan="5">No virtual trades yet</td></tr></tbody></table></div></article></section>
+  </main>
+  <div id="toast" role="status"></div>
+  <script src="https://unpkg.com/@solana/web3.js@1.98.4/lib/index.iife.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
